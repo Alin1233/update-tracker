@@ -6,3 +6,10 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
+
+model Apps {
+    id Int @id @default(autoincrement())
+    name String 
+    url String @unique
+    used_version String
+}
