@@ -22,7 +22,7 @@ import {
     SelectValue,
 } from '@/components/ui/select'
 import { CreateAppFormSchema } from '@/schemas/CreateAppFormSchema'
-import { createAppAction } from '@/actions/CreateAppsActions'
+import { createAppAction } from '@/actions/AppsActions'
 import { getAppVersion } from '@/actions/GithubActions'
 
 export const CreateAppForm = () => {

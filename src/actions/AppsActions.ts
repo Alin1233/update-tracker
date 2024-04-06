@@ -3,12 +3,13 @@ import { CreateAppFormSchema } from '@/schemas/CreateAppFormSchema'
 import { z } from 'zod'
 import { PrismaClient } from '@prisma/client'
 
+const prisma = new PrismaClient()
+
 export const createAppAction = async (
     values: z.infer<typeof CreateAppFormSchema>
 ) => {
     try {
         CreateAppFormSchema.parse(values)
-        const prisma = new PrismaClient()
         const createApp = await prisma.apps.create({
             data: {
                 name: values.username,
@@ -20,4 +21,8 @@ export const createAppAction = async (
     } catch (error) {
         console.error('Error creating app:', error)
     }
+}
+export const getAllApps = async () => {
+    const apps = await prisma.apps.findMany()
+    return apps
 }
