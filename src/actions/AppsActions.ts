@@ -2,12 +2,12 @@
 import { CreateAppFormSchema } from '@/schemas/CreateAppFormSchema'
 import { z } from 'zod'
 import { PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient()
+import { getLatestVersion } from './GithubActions'
 
 export const createAppAction = async (
     values: z.infer<typeof CreateAppFormSchema>
 ) => {
+    const prisma = new PrismaClient()
     try {
         CreateAppFormSchema.parse(values)
         const createApp = await prisma.apps.create({
@@ -23,6 +23,13 @@ export const createAppAction = async (
     }
 }
 export const getAllApps = async () => {
+    const prisma = new PrismaClient()
     const apps = await prisma.apps.findMany()
-    return apps
+    const appWithLatestVersion = await Promise.all(
+        apps.map(async (app) => {
+            const latestVersion = await getLatestVersion(app.url)
+            return { ...app, latestVersion: latestVersion }
+        })
+    )
+    return appWithLatestVersion
 }

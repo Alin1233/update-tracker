@@ -25,6 +25,7 @@ export const DataTable = (props: any) => {
                     <TableRow key={data.id}>
                         <TableCell>{data.name}</TableCell>
                         <TableCell>{data.used_version}</TableCell>
+                        <TableCell>{data.latestVersion}</TableCell>
                     </TableRow>
                 ))}
             </TableBody>

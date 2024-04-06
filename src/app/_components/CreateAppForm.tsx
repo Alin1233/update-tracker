@@ -23,14 +23,14 @@ import {
 } from '@/components/ui/select'
 import { CreateAppFormSchema } from '@/schemas/CreateAppFormSchema'
 import { createAppAction } from '@/actions/AppsActions'
-import { getAppVersion } from '@/actions/GithubActions'
+import { getAppVersions } from '@/actions/GithubActions'
 
 export const CreateAppForm = () => {
     const [versions, setVersions] = useState([])
     const form = useForm<z.infer<typeof CreateAppFormSchema>>({
         resolver: zodResolver(CreateAppFormSchema),
         defaultValues: {
-            username: '',
+            name: '',
             url: '',
             version: '',
         },
@@ -40,7 +40,7 @@ export const CreateAppForm = () => {
     }
     const handleFetchClick = async () => {
         const githubUrl = form.getValues().url
-        const versions = await getAppVersion(githubUrl)
+        const versions = await getAppVersions(githubUrl)
         setVersions(versions)
     }
     return (
@@ -48,10 +48,10 @@ export const CreateAppForm = () => {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                 <FormField
                     control={form.control}
-                    name="username"
+                    name="name"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Username</FormLabel>
+                            <FormLabel>Name</FormLabel>
                             <FormControl>
                                 <Input placeholder="app name" {...field} />
                             </FormControl>
