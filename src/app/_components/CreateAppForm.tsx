@@ -36,6 +36,9 @@ export const CreateAppForm = () => {
     const onSubmit = async (values: z.infer<typeof CreateAppFormSchema>) => {
         await createAppAction(values)
     }
+    const handleFetchClick = () => {
+        const githubUrl = form.getValues().url
+    }
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -108,6 +111,7 @@ export const CreateAppForm = () => {
                 />
                 <Button type="submit">Submit</Button>
             </form>
+            <Button onClick={handleFetchClick}>Fetch Version</Button>
         </Form>
     )
 }
