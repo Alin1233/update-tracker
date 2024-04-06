@@ -26,7 +26,7 @@ export default function RootLayout({
                     fontSans.variable
                 )}
             >
-                {children}
+                <div>{children}</div>
             </body>
         </html>
     )
