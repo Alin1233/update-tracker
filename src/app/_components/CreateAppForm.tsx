@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -23,8 +23,10 @@ import {
 } from '@/components/ui/select'
 import { CreateAppFormSchema } from '@/schemas/CreateAppFormSchema'
 import { createAppAction } from '@/actions/CreateAppAction'
+import { getAppVersion } from '@/actions/GithubActions'
 
 export const CreateAppForm = () => {
+    const [versions, setVersions] = useState([])
     const form = useForm<z.infer<typeof CreateAppFormSchema>>({
         resolver: zodResolver(CreateAppFormSchema),
         defaultValues: {
@@ -36,8 +38,9 @@ export const CreateAppForm = () => {
     const onSubmit = async (values: z.infer<typeof CreateAppFormSchema>) => {
         await createAppAction(values)
     }
-    const handleFetchClick = () => {
+    const handleFetchClick = async () => {
         const githubUrl = form.getValues().url
+        setVersions(await getAppVersion(githubUrl))
     }
     return (
         <Form {...form}>
@@ -86,19 +89,23 @@ export const CreateAppForm = () => {
                             >
                                 <FormControl>
                                     <SelectTrigger>
-                                        <SelectValue placeholder="Select a verified email to display" />
+                                        <SelectValue placeholder="Select a version that you use" />
                                     </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
-                                    <SelectItem value="m@example.com">
-                                        m@example.com
-                                    </SelectItem>
-                                    <SelectItem value="m@google.com">
-                                        m@google.com
-                                    </SelectItem>
-                                    <SelectItem value="m@support.com">
-                                        m@support.com
-                                    </SelectItem>
+                                    {versions.length > 0 &&
+                                        versions.map((version) => (
+                                            <SelectItem
+                                                value={version}
+                                                key={version}
+                                            >
+                                                {version}
+                                            </SelectItem>
+                                        ))}
+
+                                    {versions.length === 0 && (
+                                        <p>Please fetch versions...</p>
+                                    )}
                                 </SelectContent>
                             </Select>
                             <FormDescription>
