@@ -22,24 +22,20 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select'
-
-const formSchema = z.object({
-    username: z.string().min(2).max(50),
-    url: z.string().min(2).max(50),
-    version: z.string().min(2).max(50),
-})
+import { CreateAppFormSchema } from '@/schemas/CreateAppFormSchema'
+import { createAppAction } from '@/actions/CreateAppAction'
 
 export const CreateAppForm = () => {
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+    const form = useForm<z.infer<typeof CreateAppFormSchema>>({
+        resolver: zodResolver(CreateAppFormSchema),
         defaultValues: {
             username: '',
             url: '',
             version: '',
         },
     })
-    const onSubmit = (values: z.infer<typeof formSchema>) => {
-        console.log(values)
+    const onSubmit = async (values: z.infer<typeof CreateAppFormSchema>) => {
+        await createAppAction(values)
     }
     return (
         <Form {...form}>
