@@ -78,6 +78,9 @@ export const CreateAppForm = () => {
                         </FormItem>
                     )}
                 />
+                <Button type="button" onClick={handleFetchClick}>
+                    Fetch versions
+                </Button>
                 <FormField
                     control={form.control}
                     name="version"
@@ -119,7 +122,6 @@ export const CreateAppForm = () => {
                 />
                 <Button type="submit">Submit</Button>
             </form>
-            <Button onClick={handleFetchClick}>Fetch Version</Button>
         </Form>
     )
 }

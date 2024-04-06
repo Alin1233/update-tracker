@@ -18,7 +18,7 @@ export const CreateApp = () => {
                         <DialogTitle>
                             Add an app to keep track of updates
                         </DialogTitle>
-                        <DialogDescription>hmm</DialogDescription>
+                        <DialogDescription></DialogDescription>
                     </DialogHeader>
                     <CreateAppForm />
                 </DialogContent>
