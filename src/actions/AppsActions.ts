@@ -12,7 +12,7 @@ export const createAppAction = async (
         CreateAppFormSchema.parse(values)
         const createApp = await prisma.apps.create({
             data: {
-                name: values.username,
+                name: values.name,
                 url: values.url,
                 used_version: values.version,
             },
