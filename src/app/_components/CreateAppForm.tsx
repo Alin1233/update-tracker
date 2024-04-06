@@ -40,7 +40,8 @@ export const CreateAppForm = () => {
     }
     const handleFetchClick = async () => {
         const githubUrl = form.getValues().url
-        setVersions(await getAppVersion(githubUrl))
+        const versions = await getAppVersion(githubUrl)
+        setVersions(versions)
     }
     return (
         <Form {...form}>
