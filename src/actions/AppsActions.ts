@@ -2,8 +2,8 @@
 import { CreateAppFormSchema } from '@/schemas/CreateAppFormSchema'
 import { z } from 'zod'
 import { PrismaClient } from '@prisma/client'
-import { getLatestVersion, getLatestVersionsGraphQl } from './GithubActions'
-import { AppType } from 'next/app'
+import { getLatestVersionsGraphQl } from './GithubActions'
+
 export const createAppAction = async (
     values: z.infer<typeof CreateAppFormSchema>
 ) => {
