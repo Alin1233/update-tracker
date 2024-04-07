@@ -24,7 +24,7 @@ export const DataTable = (props: any) => {
                 {props.data.map((data) => (
                     <TableRow key={data.id}>
                         <TableCell>{data.name}</TableCell>
-                        <TableCell>{data.used_version}</TableCell>
+                        <TableCell>{data.usedVersion}</TableCell>
                         <TableCell>{data.latestVersion}</TableCell>
                     </TableRow>
                 ))}

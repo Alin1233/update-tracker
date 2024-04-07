@@ -11,5 +11,6 @@ model Apps {
     id Int @id @default(autoincrement())
     name String 
     url String @unique
-    used_version String
+    usedVersion String
+    latestVersion String?
 }
