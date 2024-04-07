@@ -32,7 +32,7 @@ export const getLatestVersionsGraphQl = async (apps: AppType[]) => {
     apps.forEach((app, index) => {
         const [owner, name] = app.url.split('/').slice(-2)
         query += `repo${index}: repository(owner: "${owner}", name: "${name}"){
-            releases (last: 1){
+            releases (first: 1){
                 nodes {
                     name
                 }

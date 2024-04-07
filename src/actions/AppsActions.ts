@@ -28,14 +28,5 @@ export const getAllApps = async () => {
     if (apps.length === 0) {
         return []
     }
-
     return await getLatestVersionsGraphQl(apps)
-
-    const appWithLatestVersion = await Promise.all(
-        apps.map(async (app) => {
-            const latestVersion = await getLatestVersion(app.url)
-            return { ...app, latestVersion: latestVersion }
-        })
-    )
-    return appWithLatestVersion
 }
