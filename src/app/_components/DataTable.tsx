@@ -8,7 +8,7 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table'
-
+import { AppType } from '@/schemas/AppType'
 export const DataTable = (props: any) => {
     return (
         <Table>
@@ -21,7 +21,7 @@ export const DataTable = (props: any) => {
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {props.data.map((data) => (
+                {props.data.map((data: AppType) => (
                     <TableRow key={data.id}>
                         <TableCell>{data.name}</TableCell>
                         <TableCell>{data.usedVersion}</TableCell>
