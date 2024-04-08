@@ -1,7 +1,7 @@
 import React from 'react'
 
-const page = () => {
-    return <div>page</div>
+const page = ({ params }) => {
+    return <p>App: {params.appId}</p>
 }
 
 export default page
