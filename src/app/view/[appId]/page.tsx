@@ -21,24 +21,18 @@ const page = async ({ params }) => {
     }
 
     return (
-        <div className="bg-white shadow rounded-lg p-6">
-            <h2 className="text-2xl font-bold mb-2">Name: {app.name}</h2>
-            <div className="mb-4">
-                <p className="text-gray-700">
-                    Current Version: {app.usedVersion}
-                </p>
-                <p className="text-gray-700">
-                    Latest Version: {latest.version}
-                </p>
+        <div>
+            <h2>Name: {app.name}</h2>
+            <div>
+                <p>Current Version: {app.usedVersion}</p>
+                <p>Latest Version: {latest.version}</p>
             </div>
-            <div className="mb-4">
-                <h3 className="text-lg font-semibold mb-2">Change Log:</h3>
+            <div>
+                <h3>Change Log:</h3>
             </div>
-            <div className="space-y-2">
+            <div>
                 {latest.changelog.split('\n').map((line, index) => (
-                    <p key={index} className="text-gray-600">
-                        {line}
-                    </p>
+                    <p key={index}>{line}</p>
                 ))}
             </div>
         </div>
