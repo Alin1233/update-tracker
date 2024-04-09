@@ -9,6 +9,7 @@ import {
     TableRow,
 } from '@/components/ui/table'
 import { AppType } from '@/schemas/AppType'
+import Link from 'next/link'
 export const DataTable = (props: any) => {
     return (
         <Table>
@@ -23,7 +24,9 @@ export const DataTable = (props: any) => {
             <TableBody>
                 {props.data.map((data: AppType) => (
                     <TableRow key={data.id}>
-                        <TableCell>{data.name}</TableCell>
+                        <TableCell>
+                            <Link href={`/view/${data.id}`}>{data.name}</Link>
+                        </TableCell>
                         <TableCell>{data.usedVersion}</TableCell>
                         <TableCell>{data.latestVersion}</TableCell>
                     </TableRow>

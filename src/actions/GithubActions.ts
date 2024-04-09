@@ -27,11 +27,11 @@ export const getAppVersions = async (url: string) => {
     }
 }
 /**
- * This function fetches the latest version tag of a GitHub repository.
- * param {string} url - The URL of the GitHub repository.
- * returns {string} - The latest version tag if successful, or 'error' if the URL is not valid.
+ * This function fetches the latest version tag and changelog of a GitHub repository.
+ * @param {string} url - The URL of the GitHub repository.
+ * @returns {Object} - An object containing the latest version tag and changelog if successful, or 'error' if the URL is not valid.
  */
-export const getLatestVersion = async (url: string) => {
+export const getLatestVersionAndChangelog = async (url: string) => {
     // Extract the repository path from the URL
     const getUrlNames = url.match(/\.com\/(.*)/)
     if (getUrlNames && getUrlNames[1]) {
@@ -39,8 +39,13 @@ export const getLatestVersion = async (url: string) => {
         const response = await axios.get(
             `https://api.github.com/repos/${getUrlNames[1]}/releases/latest`
         )
-        // Return the name of the latest release
-        return response.data.name
+        // Return the name of the latest release and the changelog
+        console.log(response.data.body)
+
+        return {
+            version: response.data.name,
+            changelog: response.data.body,
+        }
     } else {
         // Return 'error' if the URL is not valid
         return 'error'
