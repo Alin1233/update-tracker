@@ -10,7 +10,14 @@ const page = async ({ params }) => {
             id: parseInt(params.appId),
         },
     })
-    const latest = await getLatestVersionAndChangelog(app?.url)
+    if (!app) {
+        return <div>Loading</div>
+    }
+    const latest = await getLatestVersionAndChangelog(app.url)
+    if (latest === 'error') {
+        return <div>Error</div>
+    }
+
     return (
         <div>
             App: {app.name}
