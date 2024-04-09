@@ -40,8 +40,6 @@ export const getLatestVersionAndChangelog = async (url: string) => {
             `https://api.github.com/repos/${getUrlNames[1]}/releases/latest`
         )
         // Return the name of the latest release and the changelog
-        console.log(response.data.body)
-
         return {
             version: response.data.name,
             changelog: response.data.body,
