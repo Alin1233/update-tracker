@@ -79,7 +79,7 @@ export const getLatestVersionsGraphQl = async (apps: AppType[]) => {
         url: 'https://api.github.com/graphql',
         method: 'post',
         headers: {
-            Authorization: `bearer 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`,
+            Authorization: `bearer ${process.env.GITHUB_TOKEN}`,
         },
         data: {
             query: finalQuery,

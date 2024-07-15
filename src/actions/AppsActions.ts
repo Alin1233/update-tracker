@@ -4,6 +4,7 @@ import { z } from 'zod'
 import { PrismaClient } from '@prisma/client'
 import { getLatestVersionsGraphQl } from './GithubActions'
 
+//adds a new tracked app to the db
 export const createAppAction = async (
     values: z.infer<typeof CreateAppFormSchema>
 ) => {
@@ -22,6 +23,7 @@ export const createAppAction = async (
         console.error('Error creating app:', error)
     }
 }
+//gets all tracked apps from the DB
 export const getAllApps = async () => {
     const prisma = new PrismaClient()
     const apps = await prisma.apps.findMany()
