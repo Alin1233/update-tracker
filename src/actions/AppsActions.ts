@@ -1,7 +1,7 @@
 'use server'
 import { CreateAppFormSchema } from '@/schemas/CreateAppFormSchema'
 import { z } from 'zod'
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient, Apps } from '@prisma/client'
 import { getLatestVersionsGraphQl } from './GithubActions'
 
 //adds a new tracked app to the db
@@ -23,8 +23,8 @@ export const createAppAction = async (
         console.error('Error creating app:', error)
     }
 }
-//gets all tracked apps from the DB
-export const getAllApps = async () => {
+//gets all tracked apps from the DB and query Github for the latest version
+export const getAllApps = async (): Promise<Apps[]> => {
     const prisma = new PrismaClient()
     const apps = await prisma.apps.findMany()
     if (apps.length === 0) {
