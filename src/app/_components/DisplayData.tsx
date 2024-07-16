@@ -1,13 +1,12 @@
 import React from 'react'
 import { getAllApps } from '@/actions/AppsActions'
-import { DataTable } from './DataTable'
 import { DisplayCard } from './DisplayCard'
+import { Apps } from '@prisma/client'
 export const DisplayData = async () => {
-    const data = await getAllApps()
+    const data: Apps[] = await getAllApps()
     return (
         <div>
-            <DataTable data={data} />
-            <div className="flex mb-4">
+            <div className="grid grid-cols-4 gap-4">
                 {data.map((app) => (
                     <DisplayCard key={app.id} app={app} />
                 ))}

@@ -1,7 +1,6 @@
 'use server'
 import axios from 'axios'
-import { AppType } from '@/schemas/AppType'
-
+import { Apps } from '@prisma/client'
 /**
  * This function fetches the version tags of a GitHub repository.
  * param {string} url - The URL of the GitHub repository.
@@ -48,7 +47,7 @@ export const getLatestVersion = async (url: string) => {
 }
 
 // This function fetches the latest versions of applications hosted on GitHub using GraphQL api.
-export const getLatestVersionsGraphQl = async (apps: AppType[]) => {
+export const getLatestVersionsGraphQl = async (apps: Apps[]) => {
     // Initialize an empty string to hold the GraphQL query.
     let query = ''
 

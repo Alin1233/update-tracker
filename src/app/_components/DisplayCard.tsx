@@ -1,7 +1,6 @@
 import {
     Card,
     CardContent,
-    CardDescription,
     CardFooter,
     CardHeader,
     CardTitle,
@@ -9,8 +8,13 @@ import {
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import AppImagePlaceholder from '/public/AppImagePlaceholder.png'
+import { Apps } from '@prisma/client'
 
-export const DisplayCard = async ({ app }) => {
+interface DisplayCardApps {
+    app: Apps
+}
+
+export const DisplayCard = async ({ app }: DisplayCardApps) => {
     if (!app) {
         return <p>Loading</p>
     }
@@ -19,8 +23,8 @@ export const DisplayCard = async ({ app }) => {
             <CardHeader>
                 <Image
                     src={AppImagePlaceholder}
-                    width={250}
-                    height={250}
+                    width={200}
+                    height={200}
                     alt="Placeholder picture of the app"
                 />
             </CardHeader>
@@ -38,7 +42,13 @@ export const DisplayCard = async ({ app }) => {
                 </div>
             </CardContent>
             <CardFooter>
-                <p>Card Footer</p>
+                <a
+                    href={app.url + '/releases'}
+                    target="_blank"
+                    className="underline"
+                >
+                    Latest changes
+                </a>
             </CardFooter>
         </Card>
     )
