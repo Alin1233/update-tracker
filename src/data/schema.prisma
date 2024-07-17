@@ -13,5 +13,5 @@ model Apps {
     url String @unique
     usedVersion String
     latestVersion String?
-    photoUrl String?
+    logoUrl String?
 }

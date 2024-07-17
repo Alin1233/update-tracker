@@ -16,12 +16,14 @@ export const createAppAction = async (
                 name: values.name,
                 url: values.url,
                 usedVersion: values.version,
+                logoUrl: values.logoUrl,
             },
         })
         console.log(createApp)
     } catch (error) {
         console.error('Error creating app:', error)
     }
+    prisma.$disconnect()
 }
 //gets all tracked apps from the DB and query Github for the latest version
 export const getAllApps = async (): Promise<Apps[]> => {
@@ -30,5 +32,6 @@ export const getAllApps = async (): Promise<Apps[]> => {
     if (apps.length === 0) {
         return []
     }
+    prisma.$disconnect()
     return await getLatestVersionsGraphQl(apps)
 }

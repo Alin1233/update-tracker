@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import AppImagePlaceholder from '/public/AppImagePlaceholder.png'
 import { Apps } from '@prisma/client'
-
+import clsx from 'clsx'
 interface DisplayCardApps {
     app: Apps
 }
@@ -21,12 +21,15 @@ export const DisplayCard = async ({ app }: DisplayCardApps) => {
     return (
         <Card>
             <CardHeader>
-                <Image
-                    src={AppImagePlaceholder}
-                    width={200}
-                    height={200}
-                    alt="Placeholder picture of the app"
-                />
+                <div className="flex justify-center items-center">
+                    <Image
+                        src={app.logoUrl ? app.logoUrl : AppImagePlaceholder}
+                        width={100}
+                        height={100}
+                        alt="Placeholder picture of the app"
+                        unoptimized
+                    />
+                </div>
             </CardHeader>
             <CardContent>
                 <div className="flex justify-between">
@@ -38,7 +41,14 @@ export const DisplayCard = async ({ app }: DisplayCardApps) => {
                     <p>Current version</p>
                     <p>Latest version</p>
                     <p>{app.usedVersion}</p>
-                    <p>{app.latestVersion}</p>
+                    <p
+                        className={clsx({
+                            'text-red-500':
+                                app.usedVersion != app.latestVersion,
+                        })}
+                    >
+                        {app.latestVersion}
+                    </p>
                 </div>
             </CardContent>
             <CardFooter>

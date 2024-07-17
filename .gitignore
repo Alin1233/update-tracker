@@ -36,3 +36,4 @@ yarn-error.log*
 next-env.d.ts
 src/data/dev.db
 *.db-journal
+/.vscode

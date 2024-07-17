@@ -33,6 +33,7 @@ export const CreateAppForm = () => {
             name: '',
             url: '',
             version: '',
+            logoUrl: '',
         },
     })
     const onSubmit = async (values: z.infer<typeof CreateAppFormSchema>) => {
@@ -57,6 +58,23 @@ export const CreateAppForm = () => {
                             </FormControl>
                             <FormDescription>
                                 This is the name of the app you want to track
+                            </FormDescription>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="logoUrl"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Logo url</FormLabel>
+                            <FormControl>
+                                <Input placeholder="logo url" {...field} />
+                            </FormControl>
+                            <FormDescription>
+                                Insert a url of the logo you want the app to
+                                have (Optional)
                             </FormDescription>
                             <FormMessage />
                         </FormItem>
