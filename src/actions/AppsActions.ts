@@ -35,3 +35,21 @@ export const getAllApps = async (): Promise<Apps[]> => {
     prisma.$disconnect()
     return await getLatestVersionsGraphQl(apps)
 }
+//updates the app version to the latest version
+export const updateAppVersion = async (app: Apps) => {
+    const prisma = new PrismaClient()
+    try {
+        const updatedApp = await prisma.apps.update({
+            where: {
+                id: app.id,
+            },
+            data: {
+                usedVersion: `${app.latestVersion}`,
+            },
+        })
+        console.log(updatedApp)
+    } catch (error) {
+        console.error('Error updating app version:', error)
+    }
+    prisma.$disconnect()
+}

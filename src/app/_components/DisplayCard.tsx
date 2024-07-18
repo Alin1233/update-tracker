@@ -1,3 +1,4 @@
+'use client'
 import {
     Card,
     CardContent,
@@ -10,6 +11,7 @@ import Image from 'next/image'
 import AppImagePlaceholder from '/public/AppImagePlaceholder.png'
 import { Apps } from '@prisma/client'
 import clsx from 'clsx'
+import { updateAppVersion } from '@/actions/AppsActions'
 interface DisplayCardApps {
     app: Apps
 }
@@ -34,7 +36,9 @@ export const DisplayCard = async ({ app }: DisplayCardApps) => {
             <CardContent>
                 <div className="flex justify-between">
                     <CardTitle>{app.name}</CardTitle>
-                    <Button>Update</Button>
+                    <Button onClick={() => updateAppVersion(app)}>
+                        Update
+                    </Button>
                 </div>
                 <br />
                 <div className="grid grid-cols-2 gap-4">
