@@ -17,7 +17,9 @@ export const UpdateApp = ({ app }: DisplayCardApps) => {
     return (
         <div>
             <Dialog>
-                <DialogTrigger>Modify App!</DialogTrigger>
+                <DialogTrigger className=" hover:bg-gray-100">
+                    Modify App!
+                </DialogTrigger>
                 <DialogContent>
                     <DialogHeader>
                         <DialogTitle>
