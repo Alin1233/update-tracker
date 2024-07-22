@@ -77,3 +77,17 @@ export const updateApp = async (
     }
     prisma.$disconnect()
 }
+export const deleteApp = async (app: Apps) => {
+    const prisma = new PrismaClient()
+    try {
+        const deletedApp = await prisma.apps.delete({
+            where: {
+                id: app.id,
+            },
+        })
+        console.log(deletedApp)
+    } catch (error) {
+        console.error('Error updating app version:', error)
+    }
+    prisma.$disconnect()
+}

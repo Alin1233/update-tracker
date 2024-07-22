@@ -10,6 +10,7 @@ import {
 import { Apps } from '@prisma/client'
 import { UpdateAppForm } from './UpdateAppForm'
 import { Button } from '@/components/ui/button'
+import { deleteApp } from '@/actions/AppsActions'
 interface DisplayCardApps {
     app: Apps
 }
@@ -22,12 +23,12 @@ export const UpdateApp = ({ app }: DisplayCardApps) => {
                 </DialogTrigger>
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>
-                            Add an app to keep track of updates
-                        </DialogTitle>
+                        <DialogTitle>Modify app</DialogTitle>
+
                         <DialogDescription></DialogDescription>
                     </DialogHeader>
                     <UpdateAppForm app={app} />
+                    <Button onClick={() => deleteApp(app)}>Delete</Button>
                 </DialogContent>
             </Dialog>
         </div>
