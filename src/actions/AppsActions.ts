@@ -53,3 +53,27 @@ export const updateAppVersion = async (app: Apps) => {
     }
     prisma.$disconnect()
 }
+//modifies the app
+export const updateApp = async (
+    app: Apps,
+    values: z.infer<typeof CreateAppFormSchema>
+) => {
+    const prisma = new PrismaClient()
+    try {
+        const updatedApp = await prisma.apps.update({
+            where: {
+                id: app.id,
+            },
+            data: {
+                name: values.name,
+                url: values.url,
+                usedVersion: values.version,
+                logoUrl: values.logoUrl,
+            },
+        })
+        console.log(updatedApp)
+    } catch (error) {
+        console.error('Error updating app:', error)
+    }
+    prisma.$disconnect()
+}

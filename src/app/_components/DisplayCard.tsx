@@ -12,6 +12,7 @@ import AppImagePlaceholder from '/public/AppImagePlaceholder.png'
 import { Apps } from '@prisma/client'
 import clsx from 'clsx'
 import { updateAppVersion } from '@/actions/AppsActions'
+import { UpdateApp } from './UpdateApp'
 interface DisplayCardApps {
     app: Apps
 }
@@ -55,7 +56,7 @@ export const DisplayCard = async ({ app }: DisplayCardApps) => {
                     </p>
                 </div>
             </CardContent>
-            <CardFooter>
+            <CardFooter className="grid grid-cols-2 gap-4">
                 <a
                     href={app.url + '/releases'}
                     target="_blank"
@@ -63,6 +64,7 @@ export const DisplayCard = async ({ app }: DisplayCardApps) => {
                 >
                     Latest changes
                 </a>
+                <UpdateApp app={app} />
             </CardFooter>
         </Card>
     )
