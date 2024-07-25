@@ -27,9 +27,9 @@ Update Tracker is designed to help users keep track of updates for their favorit
 
 ## Demonstration
 
-![Screenshot](https://github.com/yourusername/update-tracker/raw/main/public/images/screenshot.png)
-![GIF](https://github.com/yourusername/update-tracker/raw/main/public/images/demo.gif)
-[Video Demo](https://github.com/yourusername/update-tracker/raw/main/public/videos/demo.mp4)
+![Screenshot](https://github.com/Alin1233/update-tracker/blob/main/screenshots/Home%20Page.png?raw=true)
+![Screenshot](https://github.com/Alin1233/update-tracker/blob/main/screenshots/Add%20App.png?raw=true)
+
 
 ## Getting Started
 
@@ -88,10 +88,6 @@ Update Tracker is structured with a front-end and a back-end to manage different
 
 - **Database**: MySQL
 - **ORM**: Prisma
-
-### Diagrams
-
-![Flowchart](https://github.com/yourusername/update-tracker/raw/main/public/images/flowchart.png)
 
 ## Technologies Used
 
