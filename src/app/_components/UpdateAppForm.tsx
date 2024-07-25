@@ -21,7 +21,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select'
-import { CreateAppFormSchema } from '@/schemas/CreateAppFormSchema'
+import { UpdateAppFormSchema } from '@/schemas/CreateAppFormSchema'
 import { createAppAction, updateApp } from '@/actions/AppsActions'
 import { getAppVersions } from '@/actions/GithubActions'
 import { Apps } from '@prisma/client'
@@ -30,8 +30,8 @@ interface DisplayCardApps {
 }
 export const UpdateAppForm = ({ app }: DisplayCardApps) => {
     const [versions, setVersions] = useState([])
-    const form = useForm<z.infer<typeof CreateAppFormSchema>>({
-        resolver: zodResolver(CreateAppFormSchema),
+    const form = useForm<z.infer<typeof UpdateAppFormSchema>>({
+        resolver: zodResolver(UpdateAppFormSchema),
         defaultValues: {
             name: app.name,
             url: app.url,
@@ -40,7 +40,7 @@ export const UpdateAppForm = ({ app }: DisplayCardApps) => {
             currentVersion: app.usedVersion,
         },
     })
-    const onSubmit = async (values: z.infer<typeof CreateAppFormSchema>) => {
+    const onSubmit = async (values: z.infer<typeof UpdateAppFormSchema>) => {
         await updateApp(app, values)
     }
     const handleFetchClick = async () => {
